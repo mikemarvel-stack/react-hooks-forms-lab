@@ -1,27 +1,32 @@
 import React, { useState } from "react";
-import { v4 as uuid } from "uuid";  // Import uuid
+import { v4 as uuid } from "uuid";
 
 function ItemForm({ onItemFormSubmit }) {
-  // Add state for form inputs
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("Produce");
+  const [itemName, setItemName] = useState("");
+  const [itemCategory, setItemCategory] = useState("Produce");
+
+  function handleNameChange(event) {
+    setItemName(event.target.value);
+  }
+
+  function handleCategoryChange(event) {
+    setItemCategory(event.target.value);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
     
-    // Create new item object
     const newItem = {
-      id: uuid(),  // Generate unique ID
-      name,
-      category,
+      id: uuid(),
+      name: itemName,
+      category: itemCategory,
     };
-    
-    // Pass new item to parent
+
     onItemFormSubmit(newItem);
     
     // Reset form
-    setName("");
-    setCategory("Produce");
+    setItemName("");
+    setItemCategory("Produce");
   }
 
   return (
@@ -31,8 +36,8 @@ function ItemForm({ onItemFormSubmit }) {
         <input 
           type="text" 
           name="name" 
-          value={name}  // Controlled input
-          onChange={(e) => setName(e.target.value)}
+          value={itemName}
+          onChange={handleNameChange}
         />
       </label>
 
@@ -40,8 +45,8 @@ function ItemForm({ onItemFormSubmit }) {
         Category:
         <select 
           name="category"
-          value={category}  // Controlled select
-          onChange={(e) => setCategory(e.target.value)}
+          value={itemCategory}
+          onChange={handleCategoryChange}
         >
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>

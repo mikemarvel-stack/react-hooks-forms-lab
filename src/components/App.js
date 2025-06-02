@@ -5,14 +5,9 @@ import Header from "./Header";
 
 function App() {
   const [items, setItems] = useState([
-    { id: 1, name: "Yogurt", category: "Dairy" },
-    { id: 2, name: "Pomegranate", category: "Produce" },
-    { id: 3, name: "Lettuce", category: "Produce" },
-    { id: 4, name: "String Cheese", category: "Dairy" },
-    { id: 5, name: "Cookies", category: "Dessert" },
+    // Initial items array
   ]);
 
-  // Add new item handler
   function handleAddItem(newItem) {
     setItems([...items, newItem]);
   }
@@ -20,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <ItemForm onItemFormSubmit={handleAddItem} /> {/* Add form */}
+      <ItemForm onItemFormSubmit={handleAddItem} />
       <ShoppingList items={items} />
     </div>
   );
